@@ -7,6 +7,8 @@ import { terser } from 'rollup-plugin-terser';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
 
+import css from 'rollup-plugin-css-only'; 
+
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
@@ -29,6 +31,9 @@ export default {
 				dev,
 				hydratable: true,
 				emitCss: true
+			}),
+			css({
+				output: 'static/extra.css',
 			}),
 			resolve({
 				browser: true,
